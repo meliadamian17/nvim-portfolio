@@ -16,8 +16,8 @@ const content = {
     "Press 'v' to enter visual mode",
     "Press 'Esc' to return to normal mode",
     "Use ':' to open the command line",
+    "Type a section name (home, about, projects, skills, contact, experience) and press Enter to navigate",
     "Use ':theme' to change themes",
-    "Type a section name (home, about, projects, skills, contact) and press Enter to navigate",
     " ",
     "Vim-like commands:",
     "w - move forward by word",
@@ -88,6 +88,7 @@ const content = {
     " ",
     "Feel free to reach out for collaborations, job opportunities, or just to chat about tech!",
   ],
+  experience: [" ",],
 };
 
 const themes = {
@@ -142,8 +143,8 @@ const themes = {
     cursor: '#FFCC00',
   },
 };
+
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
   const [currentSection, setCurrentSection] = useState('home');
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [theme, setTheme] = useState(themes.dark);
@@ -155,23 +156,26 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    const globalKeyDownHandler = (event: KeyboardEvent) => {
+      // Ignore global key handling if command line or modal is active
+      if (commandLineOpen || showThemeModal) return;
 
-  useEffect(() => {
-    if (containerRef.current && !commandLineOpen) {
-      containerRef.current.focus();
-    }
-  }, [commandLineOpen, isClient]);
+      handleKeyDown(event);
+    };
+
+    window.addEventListener('keydown', globalKeyDownHandler);
+    return () => {
+      window.removeEventListener('keydown', globalKeyDownHandler);
+    };
+  }, [handleKeyDown, showThemeModal, commandLineOpen]);
 
   const handleCommand = (command: string) => {
     const cmd = command.replace(':', '');
-    const validSections = ['home', 'about', 'projects', 'skills', 'contact'];
+    const validSections = ['home', 'about', 'projects', 'skills', 'contact', 'experience'];
 
     if (cmd === 'theme') {
       setShowThemeModal(true);
     } else if (validSections.includes(cmd)) {
-
       const newSectionContent = content[cmd as keyof typeof content];
       setCurrentSection(cmd);
       setCursorPosition((prev) => ({
@@ -200,40 +204,32 @@ export default function Home() {
     containerRef.current?.focus();
   };
 
-  if (!isClient) {
-    return null;
-  }
-
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col h-screen font-mono"
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      style={{
-        backgroundColor: theme.background,
-        color: theme.foreground,
-      }}
-    >
-      <Terminal theme={theme}>
-        <Content section={currentSection} cursorPosition={cursorPosition} theme={theme} />
-      </Terminal>
-      <StatusBar
-        mode={mode}
-        currentSection={currentSection}
-        cursorPosition={cursorPosition}
-        theme={theme}
-      />
-      {commandLineOpen && <CommandLine onCommand={handleCommand} theme={theme} />}
-      {showThemeModal && (
-        <ThemeModal
-          themes={themes}
-          currentTheme={Object.keys(themes).find((key) => themes[key] === savedTheme) || 'dark'}
-          setTheme={(themeKey: string) => setTheme(themes[themeKey])}
-          onClose={closeModal}
-          onSave={saveTheme}
-        />
-      )}
+    <div className="crt-wrapper h-screen">
+      <div className="crt">
+        <div className="flex flex-col h-full font-mono" style={{ backgroundColor: theme.background, color: theme.foreground }}>
+          <Terminal theme={theme}>
+            <Content section={currentSection} cursorPosition={cursorPosition} theme={theme} />
+          </Terminal>
+          <StatusBar mode={mode} currentSection={currentSection} cursorPosition={cursorPosition} theme={theme} />
+          {commandLineOpen && (
+            <CommandLine
+              onCommand={handleCommand}
+              theme={theme}
+              onClose={() => setCommandLineOpen(false)} // Close the command line
+            />
+          )}
+          {showThemeModal && (
+            <ThemeModal
+              themes={themes}
+              currentTheme={Object.keys(themes).find((key) => themes[key] === savedTheme) || 'dark'}
+              setTheme={(themeKey: string) => setTheme(themes[themeKey])}
+              onClose={closeModal}
+              onSave={saveTheme}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

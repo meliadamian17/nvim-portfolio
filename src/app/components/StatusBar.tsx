@@ -19,10 +19,11 @@ const StatusBar: React.FC<StatusBarProps> = ({
 }) => {
   return (
     <div
-      className="p-1 flex justify-between items-center text-sm"
+      className="absolute bottom-4 left-0 right-0 p-2 text-sm flex justify-between items-center"
       style={{
         backgroundColor: theme.background,
         color: theme.foreground,
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)', // Adds separation from terminal content
       }}
     >
       <div className="flex items-center space-x-4">

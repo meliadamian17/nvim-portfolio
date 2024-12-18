@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 interface CommandLineProps {
   onCommand: (command: string) => void;
+  onClose: () => void; // Handler for closing the command line
   theme: {
     background: string;
     foreground: string;
@@ -11,15 +12,15 @@ interface CommandLineProps {
   };
 }
 
-const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
-  const [command, setCommand] = useState("");
+const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) => {
+  const [command, setCommand] = useState('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number | null>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const validCommands = ["home", "about", "projects", "skills", "contact", "theme"];
+  const validCommands = ['home', 'about', 'projects', 'skills', 'contact', 'theme', 'experience'];
 
   useEffect(() => {
     if (inputRef.current) {
@@ -31,7 +32,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
     const value = e.target.value;
     setCommand(value);
 
-    const trimmedValue = value.startsWith(":") ? value.slice(1) : value;
+    const trimmedValue = value.startsWith(':') ? value.slice(1) : value;
 
     if (trimmedValue.trim()) {
       setSuggestions(
@@ -47,7 +48,12 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowUp") {
+    if (e.key === 'Escape') {
+      setCommand(''); // Clear the command input
+      setSuggestions([]); // Clear suggestions
+      setHistoryIndex(null); // Reset history index
+      onClose(); // Close the command line
+    } else if (e.key === 'ArrowUp') {
       if (historyIndex === null && commandHistory.length > 0) {
         setHistoryIndex(commandHistory.length - 1);
         setCommand(commandHistory[commandHistory.length - 1]);
@@ -55,17 +61,17 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
         setHistoryIndex(historyIndex - 1);
         setCommand(commandHistory[historyIndex - 1]);
       }
-    } else if (e.key === "ArrowDown") {
+    } else if (e.key === 'ArrowDown') {
       if (historyIndex !== null) {
         if (historyIndex < commandHistory.length - 1) {
           setHistoryIndex(historyIndex + 1);
           setCommand(commandHistory[historyIndex + 1]);
         } else {
           setHistoryIndex(null);
-          setCommand(":");
+          setCommand(':');
         }
       }
-    } else if (e.key === "Tab") {
+    } else if (e.key === 'Tab') {
       e.preventDefault();
       if (suggestions.length > 0) {
         setCommand(`:${suggestions[0]}`);
@@ -86,7 +92,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
       onCommand(command);
 
       setCommandHistory((prev) => [...prev, command]);
-      setCommand(":");
+      setCommand(':');
       setSuggestions([]);
       setHistoryIndex(null);
     }
@@ -94,10 +100,11 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, theme }) => {
 
   return (
     <div
-      className="relative p-1"
+      className="absolute bottom-0 left-0 right-0 p-2"
       style={{
         backgroundColor: theme.background,
         color: theme.foreground,
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)', // Matches StatusBar styling
       }}
     >
       {suggestions.length > 0 && (
