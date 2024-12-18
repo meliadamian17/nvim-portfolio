@@ -1,18 +1,15 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { CommandLineProps } from '../props';
 
-interface CommandLineProps {
-  onCommand: (command: string) => void;
-  onClose: () => void; // Handler for closing the command line
-  theme: {
-    background: string;
-    foreground: string;
-    cursor: string;
-  };
-}
-
-const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) => {
+const CommandLine: React.FC<CommandLineProps> = ({
+  onCommand,
+  onClose,
+  setCursorPosition,
+  sectionContent,
+  theme,
+}) => {
   const [command, setCommand] = useState('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number | null>(null);
@@ -34,7 +31,9 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) 
 
     const trimmedValue = value.startsWith(':') ? value.slice(1) : value;
 
-    if (trimmedValue.trim()) {
+    if (value === ':') {
+      setSuggestions(validCommands);
+    } else if (trimmedValue.trim()) {
       setSuggestions(
         validCommands.filter((cmd) =>
           cmd.toLowerCase().startsWith(trimmedValue.toLowerCase())
@@ -49,10 +48,10 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) 
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
-      setCommand(''); // Clear the command input
-      setSuggestions([]); // Clear suggestions
-      setHistoryIndex(null); // Reset history index
-      onClose(); // Close the command line
+      setCommand('');
+      setSuggestions([]);
+      setHistoryIndex(null);
+      onClose();
     } else if (e.key === 'ArrowUp') {
       if (historyIndex === null && commandHistory.length > 0) {
         setHistoryIndex(commandHistory.length - 1);
@@ -88,14 +87,23 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (command.trim()) {
+    const lineCommandMatch = command.match(/^:(\d+)$/);
+    if (lineCommandMatch) {
+      const lineNumber = parseInt(lineCommandMatch[1], 10) - 1;
+      setCursorPosition({
+        line: Math.max(0, Math.min(lineNumber, sectionContent.length - 1)),
+        column: 0,
+      });
+      onClose();
+    } else if (command.trim()) {
       onCommand(command);
 
       setCommandHistory((prev) => [...prev, command]);
-      setCommand(':');
-      setSuggestions([]);
-      setHistoryIndex(null);
     }
+
+    setCommand(':');
+    setSuggestions([]);
+    setHistoryIndex(null);
   };
 
   return (
@@ -104,7 +112,7 @@ const CommandLine: React.FC<CommandLineProps> = ({ onCommand, onClose, theme }) 
       style={{
         backgroundColor: theme.background,
         color: theme.foreground,
-        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)', // Matches StatusBar styling
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)',
       }}
     >
       {suggestions.length > 0 && (

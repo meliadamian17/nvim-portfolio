@@ -1,12 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
-interface ThemeModalProps {
-  themes: Record<string, { background: string; foreground: string; cursor: string }>;
-  currentTheme: string;
-  setTheme: (theme: string) => void;
-  onClose: () => void;
-  onSave: (themeKey: string) => void;
-}
+import { ThemeModalProps } from '../props';
 
 const ThemeModal: React.FC<ThemeModalProps> = ({
   themes,

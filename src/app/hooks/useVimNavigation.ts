@@ -109,12 +109,6 @@ const useVimNavigation = (content: string[]) => {
               newLine = content.length - 1;
               newColumn = 0;
               break;
-            case "i":
-              setMode("insert");
-              break;
-            case "v":
-              setMode("visual");
-              break;
             case ":":
               setCommandLineOpen(true);
               break;

@@ -1,15 +1,5 @@
 import React from 'react';
-
-interface StatusBarProps {
-  mode: string;
-  currentSection: string;
-  cursorPosition: { line: number; column: number };
-  theme: {
-    background: string;
-    foreground: string;
-    cursor: string;
-  };
-}
+import { StatusBarProps } from '../props';
 
 const StatusBar: React.FC<StatusBarProps> = ({
   mode,

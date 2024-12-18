@@ -48,15 +48,15 @@ body {
 
 .crt {
   position: relative;
-  width: 100%; /* Ensure it fits the parent container */
+  width: 100%;
   height: 100%;
   overflow: hidden;
   border: 10px solid black;
-  border-radius: 50px; /* Curved corners */
-  box-shadow: 0 0 50px rgba(0, 0, 125, 0.2); /* Green glow effect */
+  border-radius: 50px;
+  box-shadow: 0 0 50px rgba(0, 0, 125, 0.2);
   background: black;
   z-index: 0;
-  box-sizing: border-box; /* Includes borders in size calculations */
+  box-sizing: border-box;
 }
 
 .crt::before {
@@ -89,7 +89,7 @@ body {
     rgba(255, 255, 255, 0.03) 1%,
     transparent 1%,
     transparent 2%
-  ); /* Scan lines */
+  );
   z-index: 1;
   mix-blend-mode: overlay;
   animation: scanlines 0.1s infinite linear;

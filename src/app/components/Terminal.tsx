@@ -1,13 +1,5 @@
 import React from 'react';
-
-interface TerminalProps {
-  children: React.ReactNode;
-  theme: {
-    background: string;
-    foreground: string;
-    cursor: string;
-  };
-}
+import { TerminalProps } from '../props';
 
 const Terminal: React.FC<TerminalProps> = ({ children, theme }) => {
   return (
