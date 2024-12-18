@@ -119,8 +119,8 @@ const CommandLine: React.FC<CommandLineProps> = ({
         <ul
           className="absolute bottom-full left-0 w-full text-sm z-10 mb-1"
           style={{
-            backgroundColor: theme.foreground,
-            color: theme.background,
+            backgroundColor: theme.background,
+            color: theme.foreground,
           }}
         >
           {suggestions.map((suggestion, index) => (

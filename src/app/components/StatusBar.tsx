@@ -9,11 +9,11 @@ const StatusBar: React.FC<StatusBarProps> = ({
 }) => {
   return (
     <div
-      className="absolute bottom-4 left-0 right-0 p-2 text-sm flex justify-between items-center"
+      className="z-0 relative bottom-4 left-0 right-0 p-2 text-sm flex justify-between items-center"
       style={{
         backgroundColor: theme.background,
         color: theme.foreground,
-        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)', // Adds separation from terminal content
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)',
       }}
     >
       <div className="flex items-center space-x-4">
@@ -24,7 +24,7 @@ const StatusBar: React.FC<StatusBarProps> = ({
         <span>
           Line {cursorPosition.line}, Col {cursorPosition.column}
         </span>
-        <span>Neovim Portfolio</span>
+        <span>Damian Melia | Neovim Portfolio</span>
       </div>
     </div>
   );
