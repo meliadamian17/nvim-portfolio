@@ -13,11 +13,12 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
   }, [section]);
 
   return (
-    <div className="relative flex">
-      <div className="w-3/4">
+    <div className="relative flex flex-col md:flex-row">
+      <div className="w-full md:w-3/4 p-4">
         {sectionContent.map((line, index) => (
-          <div key={`${renderedKey}-${index}`} className="whitespace-pre flex">
+          <div key={`${renderedKey}-${index}`} className="whitespace-pre-wrap flex items-start">
             <span
+              className="text-right"
               style={{
                 color: theme.lineNumber,
                 width: "3ch",
@@ -27,7 +28,8 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
             >
               {index + 1}.
             </span>
-            <span className="ml-2 relative">
+
+            <span className="ml-2 relative w-full">
               {line.link ? (
                 <a
                   href={line.link}
@@ -57,6 +59,7 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
                   delaySpeed={500}
                 />
               )}
+
               {index === cursorPosition.line && (
                 <span
                   className="blinking-cursor absolute"
@@ -73,7 +76,9 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
         ))}
       </div>
 
-      <Navigation theme={theme} />
+      <div className="hidden md:block">
+        <Navigation theme={theme} />
+      </div>
     </div>
   );
 };

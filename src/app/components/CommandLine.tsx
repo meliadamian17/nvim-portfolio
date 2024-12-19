@@ -17,7 +17,16 @@ const CommandLine: React.FC<CommandLineProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const validCommands = ['home', 'about', 'projects', 'skills', 'contact', 'theme', 'experience'];
+  const validCommands = [
+    'home',
+    'about',
+    'projects',
+    'skills',
+    'contact',
+    'theme',
+    'experience',
+    'navbar',
+  ];
 
   useEffect(() => {
     if (inputRef.current) {

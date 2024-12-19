@@ -9,6 +9,7 @@ export const content: ContentSections = {
       text: "Type a section name (home, about, projects, skills, contact) and press Enter to navigate",
     },
     { text: "Use ':theme' to change themes" },
+    { text: "Use ':navbar' to toggle the navbar" },
     { text: " " },
     { text: "Vim commands:" },
     { text: "w - move forward by word" },
@@ -44,19 +45,25 @@ export const content: ContentSections = {
       text: "StudyBuddies",
       link: "https://github.com/meliadamian17/studybuddies",
     },
+    { text: " " },
     {
       text: "   - A Go-powered app enabling real-time location tracking and messaging for study sessions.",
     },
+    { text: " " },
     {
       text: "   - Integrated PostgreSQL for secure and efficient data management.",
     },
+    { text: " " },
     { text: "   - Utilized WebSocket for seamless user communication." },
     { text: " " },
     { text: "Personal Portfolio Website", link: "https://damian717.com" },
+    { text: " " },
     {
       text: "   - Built with NextJS, TailwindCSS, and Go for showcasing technical expertise.",
     },
+    { text: " " },
     { text: "   - Includes a custom CMS for managing dynamic content." },
+    { text: " " },
     {
       text: "   - Features a dynamic Articles section highlighting my industry insights.",
     },
@@ -65,19 +72,25 @@ export const content: ContentSections = {
       text: "Stack Selector",
       link: "https://github.com/meliadamian17/stack-selector",
     },
+    { text: " " },
     {
       text: "   - A web application for recommending technology stacks based on project needs.",
     },
+    { text: " " },
     { text: "   - Leveraged Go and MongoDB for a robust backend." },
+    { text: " " },
     {
       text: "   - Designed a responsive frontend with HTMX for real-time updates.",
     },
+    { text: " " },
     { text: " " },
     {
       text: "ShopTrack",
       link: "https://github.com/meliadamian17/shoptrack",
     },
+    { text: " " },
     { text: "   - Android e-commerce app for store owners and shoppers." },
+    { text: " " },
     { text: "   - Built with Java and Firebase for robust order processing." },
   ],
   skills: [
@@ -98,27 +111,35 @@ export const content: ContentSections = {
     { text: "Experience" },
     { text: " " },
     { text: "Software Engineering Advisor - AVOLTA Inc (Aug 2024 - Present)" },
+    { text: " " },
     {
       text: "   - Designed an API testing architecture that increased test coverage by 60%.",
     },
+    { text: " " },
     {
       text: "   - Improved query performance by 30% and reduced redundancy by 20% with optimized database schemas.",
     },
+    { text: " " },
     {
       text: "   - Mentored 3 interns, enhancing their efficiency and project contributions by 40%.",
     },
+    { text: " " },
     { text: "   - Refactored APIs to improve modularity and maintainability." },
     { text: " " },
     {
       text: "Software Developer Intern - JDRF Electromag Engineering (Jan 2024 - Sep 2024)",
     },
+    { text: " " },
     {
       text: "   - Implemented an automated Slack alert system, doubling team responsiveness.",
     },
+    { text: " " },
     {
       text: "   - Refactored a critical software module, improving maintainability by 25%.",
     },
+    { text: " " },
     { text: "   - Managed CI/CD pipelines, reducing deployment time by 15%." },
+    { text: " " },
     {
       text: "   - Achieved 90% code coverage in unit testing and reduced runtime by 30%.",
     },
@@ -126,15 +147,19 @@ export const content: ContentSections = {
     {
       text: "Developer / Plugin Engineer - Treasurelands (Jul 2023 - Jan 2024)",
     },
+    { text: " " },
     {
       text: "   - Developed and maintained 20+ Minecraft plugins, increasing player retention by 15%.",
     },
+    { text: " " },
     {
       text: "   - Engineered a load-balancing proxy, improving connection speed by 30%.",
     },
+    { text: " " },
     {
       text: "   - Managed databases for 10,000+ players, optimizing performance and stability.",
     },
+    { text: " " },
     {
       text: "   - Boosted plugin performance by 25% with new technology integrations.",
     },

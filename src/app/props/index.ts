@@ -1,3 +1,13 @@
+import { ContentLine, Theme } from "../types";
+
+export interface NavbarProps {
+  sections: string[];
+  onNavigate: (section: string) => void;
+  onToggleTheme: () => void;
+  theme: Theme;
+  isVisible: boolean;
+}
+
 export interface ContentProps {
   section: string;
   cursorPosition: { line: number; column: number };
@@ -14,7 +24,7 @@ export interface CommandLineProps {
   onCommand: (command: string) => void;
   onClose: () => void;
   setCursorPosition: (position: { line: number; column: number }) => void;
-  sectionContent: string[];
+  sectionContent: ContentLine[];
   theme: {
     background: string;
     foreground: string;
@@ -57,9 +67,8 @@ export interface ThemeModalProps {
 
 export interface TerminalProps {
   children: React.ReactNode;
-  theme: {
-    background: string;
-    foreground: string;
-    cursor: string;
-  };
+  theme: Theme;
+  navbarVisible: boolean;
+  onToggleNavbar: () => void;
+  onNavigate: (section: string) => void;
 }

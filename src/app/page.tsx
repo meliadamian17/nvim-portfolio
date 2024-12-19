@@ -15,6 +15,7 @@ export default function Home() {
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [theme, setTheme] = useState(themes.monokai);
   const [savedTheme, setSavedTheme] = useState(themes.monokai);
+  const [navbarVisible, setNavbarVisible] = useState(false);
 
   const {
     mode,
@@ -26,7 +27,6 @@ export default function Home() {
   } = useVimNavigation(content[currentSection as keyof typeof content]);
 
   const containerRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     const globalKeyDownHandler = (event: KeyboardEvent) => {
@@ -41,12 +41,22 @@ export default function Home() {
     };
   }, [handleKeyDown, commandLineOpen, showThemeModal]);
 
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      setNavbarVisible(true)
+    } else {
+      setNavbarVisible(false)
+    }
+  }, []);
+
   const handleCommand = (command: string) => {
     const cmd = command.replace(':', '');
-    const validSections = ['home', 'about', 'projects', 'skills', 'contact', 'experience'];
+    const validSections = ['home', 'about', 'projects', 'skills', 'contact', 'experience', 'navbar'];
 
     if (cmd === 'theme') {
       setShowThemeModal(true);
+    } else if (cmd === 'navbar') {
+      setNavbarVisible(!navbarVisible);
     } else if (!isNaN(Number(cmd))) {
       const lineNumber = parseInt(cmd, 10) - 1;
       const sectionContent = content[currentSection as keyof typeof content];
@@ -83,15 +93,20 @@ export default function Home() {
   };
 
   return (
-    <div className="crt-wrapper h-screen">
-      <div className="crt">
+    <div className="crt-wrapper h-screen flex">
+      <div className="crt flex flex-col flex-1">
         <div
           className="flex flex-col h-full font-mono"
           style={{ backgroundColor: theme.background, color: theme.foreground }}
           ref={containerRef}
           tabIndex={0}
         >
-          <Terminal theme={theme}>
+          <Terminal
+            theme={theme}
+            navbarVisible={navbarVisible}
+            onToggleNavbar={() => setNavbarVisible(!navbarVisible)}
+            onNavigate={setCurrentSection}
+          >
             <Content
               section={currentSection}
               cursorPosition={cursorPosition}
@@ -132,3 +147,4 @@ export default function Home() {
     </div>
   );
 }
+
