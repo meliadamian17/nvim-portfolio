@@ -13,8 +13,8 @@ import { themes } from './themes';
 export default function Home() {
   const [currentSection, setCurrentSection] = useState('home');
   const [showThemeModal, setShowThemeModal] = useState(false);
-  const [theme, setTheme] = useState(themes.dark);
-  const [savedTheme, setSavedTheme] = useState(themes.dark);
+  const [theme, setTheme] = useState(themes.monokai);
+  const [savedTheme, setSavedTheme] = useState(themes.monokai);
 
   const {
     mode,

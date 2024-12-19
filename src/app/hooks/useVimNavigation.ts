@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback, KeyboardEvent } from "react";
+import { Content } from "../types";
 
-const useVimNavigation = (content: string[]) => {
+const useVimNavigation = (content: Content) => {
   const [mode, setMode] = useState("normal");
   const [cursorPosition, setCursorPosition] = useState({ line: 0, column: 0 });
   const [commandLineOpen, setCommandLineOpen] = useState(false);
@@ -39,35 +40,41 @@ const useVimNavigation = (content: string[]) => {
             case "j":
             case "ArrowDown":
               newLine = Math.min(content.length - 1, prev.line + multiplier);
-              newColumn = Math.min(newColumn, content[newLine].length - 1);
+              newColumn = Math.min(newColumn, content[newLine].text.length - 1);
               break;
             case "k":
             case "ArrowUp":
               newLine = Math.max(0, prev.line - multiplier);
-              newColumn = Math.min(newColumn, content[newLine].length - 1);
+              newColumn = Math.min(newColumn, content[newLine].text.length - 1);
               break;
             case "l":
             case "ArrowRight":
               newColumn = Math.min(
-                content[newLine].length - 1,
+                content[newLine].text.length - 1,
                 prev.column + multiplier,
               );
               break;
+            case "Enter":
+              const currentLine = content[newLine];
+              if (currentLine.link) {
+                window.open(currentLine.link, "_blank");
+              }
+              break;
             case "w":
               for (let i = 0; i < multiplier; i++) {
-                if (newColumn >= content[newLine].length - 1) {
+                if (newColumn >= content[newLine].text.length - 1) {
                   if (newLine < content.length - 1) {
                     newLine++;
                     newColumn = 0;
                   }
                 } else {
-                  const restOfLine = content[newLine].slice(newColumn + 1);
+                  const restOfLine = content[newLine].text.slice(newColumn + 1);
                   const nextWordMatch = restOfLine.match(/\S+\s/);
                   if (nextWordMatch) {
                     newColumn +=
                       nextWordMatch.index! + nextWordMatch[0].length + 1;
                   } else {
-                    newColumn = content[newLine].length - 1;
+                    newColumn = content[newLine].text.length - 1;
                   }
                 }
               }
@@ -77,10 +84,13 @@ const useVimNavigation = (content: string[]) => {
                 if (newColumn === 0) {
                   if (newLine > 0) {
                     newLine--;
-                    newColumn = content[newLine].length - 1;
+                    newColumn = content[newLine].text.length - 1;
                   }
                 } else {
-                  const beforeCursor = content[newLine].slice(0, newColumn);
+                  const beforeCursor = content[newLine].text.slice(
+                    0,
+                    newColumn,
+                  );
                   const prevWordMatch = beforeCursor.match(/\S+\s*$/);
                   if (prevWordMatch) {
                     newColumn = prevWordMatch.index!;
@@ -94,7 +104,7 @@ const useVimNavigation = (content: string[]) => {
               newColumn = 0;
               break;
             case "$":
-              newColumn = Math.max(0, content[newLine].length - 1);
+              newColumn = Math.max(0, content[newLine].text.length - 1);
               break;
             case "g":
               if (lastKeyPressed === "g") {

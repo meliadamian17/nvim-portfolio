@@ -7,6 +7,13 @@ export interface Theme {
   instructions: string;
 }
 
+export interface ContentLine {
+  text: string;
+  link?: string;
+}
+
+export type Content = ContentLine[];
+
 export interface ContentSections {
-  [key: string]: string[];
+  [key: string]: ContentLine[];
 }
