@@ -78,7 +78,7 @@ export default function Home() {
     setCommandLineOpen(false);
   };
 
-  const closeModal = () => {
+  const closeThemeModal = () => {
     setTheme(savedTheme);
     setShowThemeModal(false);
     containerRef.current?.focus();
@@ -96,7 +96,7 @@ export default function Home() {
     <div className="crt-wrapper h-screen flex">
       <div className="crt flex flex-col flex-1">
         <div
-          className="flex flex-col h-full font-mono"
+          className="flex flex-col h-full"
           style={{ backgroundColor: theme.background, color: theme.foreground }}
           ref={containerRef}
           tabIndex={0}
@@ -106,6 +106,7 @@ export default function Home() {
             navbarVisible={navbarVisible}
             onToggleNavbar={() => setNavbarVisible(!navbarVisible)}
             onNavigate={setCurrentSection}
+            onToggleTheme={() => setShowThemeModal(true)}
           >
             <Content
               section={currentSection}
@@ -138,7 +139,7 @@ export default function Home() {
               themes={themes}
               currentTheme={Object.keys(themes).find((key) => themes[key] === savedTheme) || 'dark'}
               setTheme={(themeKey: string) => setTheme(themes[themeKey])}
-              onClose={closeModal}
+              onClose={closeThemeModal}
               onSave={saveTheme}
             />
           )}

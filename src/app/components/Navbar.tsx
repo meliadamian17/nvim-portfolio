@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({
         color: theme.foreground,
       }}
     >
-      <div className="flex items-center justify-between px-6 py-3">
+      <div className="flex items-center justify-between px-6 py-4">
         <h1
           className="text-xl font-semibold tracking-wide"
           style={{ color: theme.title }}
@@ -41,12 +41,12 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="w-6 h-1 bg-current rounded"></div>
         </button>
 
-        <ul className="hidden md:flex space-x-8 text-sm font-medium">
+        <ul className="hidden md:flex space-x-24 text-lg font-medium">
           {sections.map((section, index) => (
             <li
               key={index}
               onClick={() => onNavigate(section)}
-              className="cursor-pointer hover:opacity-90 transition-opacity"
+              className="cursor-pointer hover:opacity-90 hover:underline-offset-4 hover:underline transition-all"
               style={{ color: theme.foreground }}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -75,8 +75,10 @@ const Navbar: React.FC<NavbarProps> = ({
           ))}
           <li>
             <button
-              onClick={() => {
-                onToggleTheme();
+              onClick={(e) => {
+                e.stopPropagation()
+                onToggleTheme()
+
                 setMenuOpen(false);
               }}
               className="w-11/12 mx-auto py-2 rounded text-sm font-medium transition-colors"

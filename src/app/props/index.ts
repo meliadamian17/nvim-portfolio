@@ -71,4 +71,5 @@ export interface TerminalProps {
   navbarVisible: boolean;
   onToggleNavbar: () => void;
   onNavigate: (section: string) => void;
+  onToggleTheme: () => void;
 }

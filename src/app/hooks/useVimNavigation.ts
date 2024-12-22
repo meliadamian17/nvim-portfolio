@@ -28,6 +28,8 @@ const useVimNavigation = (content: Content) => {
         const multiplier = prefix > 0 ? prefix : 1;
         setPrefix(0);
 
+        const blockSize = Math.max(Math.floor(content.length / 10), 1);
+
         setCursorPosition((prev) => {
           let newLine = prev.line;
           let newColumn = prev.column;
@@ -35,30 +37,28 @@ const useVimNavigation = (content: Content) => {
           switch (event.key) {
             case "h":
             case "ArrowLeft":
+              event.preventDefault();
               newColumn = Math.max(0, prev.column - multiplier);
               break;
             case "j":
             case "ArrowDown":
+              event.preventDefault();
               newLine = Math.min(content.length - 1, prev.line + multiplier);
               newColumn = Math.min(newColumn, content[newLine].text.length - 1);
               break;
             case "k":
             case "ArrowUp":
+              event.preventDefault();
               newLine = Math.max(0, prev.line - multiplier);
               newColumn = Math.min(newColumn, content[newLine].text.length - 1);
               break;
             case "l":
             case "ArrowRight":
+              event.preventDefault();
               newColumn = Math.min(
                 content[newLine].text.length - 1,
                 prev.column + multiplier,
               );
-              break;
-            case "Enter":
-              const currentLine = content[newLine];
-              if (currentLine.link) {
-                window.open(currentLine.link, "_blank");
-              }
               break;
             case "w":
               for (let i = 0; i < multiplier; i++) {
@@ -121,6 +121,24 @@ const useVimNavigation = (content: Content) => {
               break;
             case ":":
               setCommandLineOpen(true);
+              break;
+            case "d":
+              if (event.ctrlKey) {
+                event.preventDefault();
+                newLine = Math.min(content.length - 1, prev.line + blockSize);
+              }
+              break;
+            case "u":
+              if (event.ctrlKey) {
+                event.preventDefault();
+                newLine = Math.max(0, prev.line - blockSize);
+              }
+              break;
+            case "Enter":
+              const currentLine = content[newLine];
+              if (currentLine.link) {
+                window.open(currentLine.link, "_blank");
+              }
               break;
             default:
               setLastKeyPressed("");

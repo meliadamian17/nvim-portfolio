@@ -2,49 +2,141 @@ import { ContentSections } from "../types";
 
 export const content: ContentSections = {
   home: [
-    { text: "Welcome to my Neovim-inspired portfolio!" },
-    { text: "Use 'hjkl' (or arrow keys) to navigate" },
-    { text: "Use ':' to open the command line" },
-    {
-      text: "Type a section name (home, about, projects, skills, contact) and press Enter to navigate",
-    },
-    { text: "Use ':theme' to change themes" },
-    { text: "Use ':navbar' to toggle the navbar" },
+    { text: "Hey there, I'm Damian!" },
     { text: " " },
-    { text: "Vim commands:" },
-    { text: "w - move forward by word" },
-    { text: "b - move backward by word" },
-    { text: "^ - move to start of line" },
-    { text: "$ - move to end of line" },
-    { text: "gg - move to top of file" },
-    { text: "G - move to bottom of file" },
+    {
+      text: "Welcome to my Neovim (kinda) portfolio!",
+    },
+    { text: " " },
+    {
+      text: "This site isn't just for the sake of displaying my work. This is a represenation of my passions.",
+    },
+    {
+      text: "Neovim made me re-love programming, and there's no better way for me to display what I've accomplished rather than paying homage to what got me here.",
+    },
+    {
+      text: "Take a look around, check out my projects, or just mess with the commands for fun. Glad you stopped by!",
+    },
+    { text: " " },
+    {
+      text: "Check Out My Resume Here!",
+      link: "https://damian-melia-resume.tiiny.site/",
+    },
   ],
+
   about: [
     { text: "About Me" },
     { text: " " },
     {
-      text: "I'm a passionate developer with a love for Vim and terminal-based applications.",
+      text: "Hey! I'm Damian, a software developer who’s big into building cool stuff and solving tricky problems.",
     },
     {
-      text: "Currently pursuing an Honors Bachelor of Science in Computer Science at the University of Toronto.",
+      text: "I’m studying Computer Science and Math at U of T, but honestly, most of my favorite learning comes from just writing code and seeing what breaks.",
     },
     {
-      text: "I specialize in software engineering, front-end development, and API design.",
+      text: "I’m really into networks, distributed systems, and all things communication. Recently, I’ve been diving deeper into SRE, infrastructure, and tools that make developers' lives easier.",
     },
     {
-      text: "My work demonstrates a focus on clean, efficient, and scalable solutions.",
+      text: "Right now, Go and Elixir are the two pieces of tech I've been enjoying working with  — they're the languages that make me have fun, which is all that matters (luckily they fit right into the topics I enjoy lol)",
     },
     {
-      text: "I enjoy contributing to open-source projects and mentoring aspiring developers.",
+      text: "Outside of coding, I love finding ways to share what I know with others, whether it’s mentoring or collaborating on open-source projects.",
+    },
+    {
+      text: "When I’m not staring at a terminal, I’m probably thinking about how to make something faster, better, or just a little cooler.",
+    },
+    {
+      text: "Be sure to check out the other sections! Try :experience or :projects !",
     },
   ],
   projects: [
     { text: "Projects" },
     { text: " " },
+
+    {
+      text: "TCP Pool",
+      link: "https://github.com/meliadamian17/tcppool",
+    },
+    { text: "Go" },
+    { text: " " },
+    {
+      text: "   - A fully concurrent TCP connection pooling library written in Go.",
+    },
+    { text: " " },
+    {
+      text: "   - Optimized for high-performance applications with configurable pooling parameters.",
+    },
+    { text: " " },
+    {
+      text: "   - Handles concurrent client requests efficiently, minimizing connection overhead.",
+    },
+    { text: " " },
+    {
+      text: "   - Includes built-in safety mechanisms to handle pool exhaustion and failures gracefully.",
+    },
+    { text: " " },
+    {
+      text: "   - Ideal for microservices and distributed systems with scalability in mind.",
+    },
+    { text: " " },
+    {
+      text: "ScriptBox",
+      link: "https://scriptbox.tech",
+    },
+    { text: "NextJS, Typescript, TailwindCSS, Prisma, SQLite, Docker" },
+    { text: " " },
+    {
+      text: "   - A live online code editor and blogging platform with AI assistance.",
+    },
+    { text: " " },
+    {
+      text: "   - Built using NextJS, TypeScript, TailwindCSS, and Prisma for a modern stack.",
+    },
+    { text: " " },
+    {
+      text: "   - Includes real-time collaborative editing capabilities.",
+    },
+    { text: " " },
+    {
+      text: "   - Integrated OpenAI API for AI-powered suggestions and content generation.",
+    },
+    { text: " " },
+    {
+      text: "   - Deployed and managed on a scalable cloud infrastructure.",
+    },
+    { text: " " },
+    {
+      text: "BootstrapMe",
+      link: "https://github.com/meliadamian17/bootstrapme",
+    },
+    { text: "Go" },
+    { text: " " },
+    {
+      text: "   - A universal project bootstrapping CLI tool written in Go.",
+    },
+    { text: " " },
+    {
+      text: "   - Supports custom, predefined bootstrapping configurations for various project types.",
+    },
+    { text: " " },
+    {
+      text: "   - Simplifies project initialization for teams by enforcing standardized templates.",
+    },
+    { text: " " },
+    {
+      text: "   - Extensible design allows users to define and share their own configurations.",
+    },
+    { text: " " },
+    {
+      text: "   - Built with performance and developer productivity in mind.",
+    },
+    { text: " " },
+
     {
       text: "StudyBuddies",
-      link: "https://github.com/meliadamian17/studybuddies",
+      link: "https://github.com/UofT-UTSC-CS-sandbox/StudyBuddies",
     },
+    { text: "Go, React Native, PostgreSQL" },
     { text: " " },
     {
       text: "   - A Go-powered app enabling real-time location tracking and messaging for study sessions.",
@@ -56,22 +148,35 @@ export const content: ContentSections = {
     { text: " " },
     { text: "   - Utilized WebSocket for seamless user communication." },
     { text: " " },
-    { text: "Personal Portfolio Website", link: "https://damian717.com" },
+
+    {
+      text: "Neovim-Inspired Portfolio Website",
+      link: "https://damian717.com",
+    },
+    { text: "NextJS, Typescript" },
     { text: " " },
     {
-      text: "   - Built with NextJS, TailwindCSS, and Go for showcasing technical expertise.",
+      text: "   - A fully interactive, Neovim-inspired portfolio built with NextJS, TailwindCSS, FROM SCRATCH!",
     },
-    { text: " " },
-    { text: "   - Includes a custom CMS for managing dynamic content." },
     { text: " " },
     {
-      text: "   - Features a dynamic Articles section highlighting my industry insights.",
+      text: "   - Features Vim-style navigation, a customizable theme, and command-line functionality.",
     },
+    { text: " " },
+    {
+      text: "   - Includes a Help section and dynamic visual elements to showcase technical expertise and creativity.",
+    },
+    { text: " " },
+    {
+      text: "   - Highlights personal projects and industry insights in a uniquely engaging format.",
+    },
+
     { text: " " },
     {
       text: "Stack Selector",
       link: "https://github.com/meliadamian17/stack-selector",
     },
+    { text: "Go, HTMX, MongoDB" },
     { text: " " },
     {
       text: "   - A web application for recommending technology stacks based on project needs.",
@@ -83,11 +188,11 @@ export const content: ContentSections = {
       text: "   - Designed a responsive frontend with HTMX for real-time updates.",
     },
     { text: " " },
-    { text: " " },
     {
       text: "ShopTrack",
       link: "https://github.com/meliadamian17/shoptrack",
     },
+    { text: "Java, Firebase, AndroidStudio" },
     { text: " " },
     { text: "   - Android e-commerce app for store owners and shoppers." },
     { text: " " },
@@ -109,6 +214,11 @@ export const content: ContentSections = {
   ],
   experience: [
     { text: "Experience" },
+    { text: " " },
+    {
+      text: "View My Resume",
+      link: "https://damian-melia-resume.tiiny.site/",
+    },
     { text: " " },
     { text: "Software Engineering Advisor - AVOLTA Inc (Aug 2024 - Present)" },
     { text: " " },

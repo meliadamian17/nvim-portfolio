@@ -16,7 +16,7 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
     <div className="relative flex flex-col md:flex-row">
       <div className="w-full md:w-3/4 p-4">
         {sectionContent.map((line, index) => (
-          <div key={`${renderedKey}-${index}`} className="whitespace-pre-wrap flex items-start">
+          <div key={`${renderedKey}-${index}`} className="whitespace-pre-wrap flex items-start py-0.5">
             <span
               className="text-right"
               style={{
@@ -44,8 +44,7 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
                     key={`${renderedKey}-${index}`}
                     words={[line.text]}
                     loop={1}
-                    typeSpeed={40}
-                    deleteSpeed={30}
+                    typeSpeed={30}
                     delaySpeed={500}
                   />
                 </a>
@@ -54,8 +53,7 @@ export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme
                   key={`${renderedKey}-${index}`}
                   words={[line.text]}
                   loop={1}
-                  typeSpeed={40}
-                  deleteSpeed={30}
+                  typeSpeed={30}
                   delaySpeed={500}
                 />
               )}
