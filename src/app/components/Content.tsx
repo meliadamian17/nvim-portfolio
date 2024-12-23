@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Typewriter } from "nextjs-simple-typewriter";
 import { content } from "../content";
 import { Navigation } from "./Navigation";
@@ -7,16 +7,39 @@ import { ContentProps } from "../props";
 export const Content: React.FC<ContentProps> = ({ section, cursorPosition, theme }) => {
   const sectionContent = content[section as keyof typeof content] || content.home;
   const [renderedKey, setRenderedKey] = useState(0);
+  const activeLineRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setRenderedKey((prev) => prev + 1);
   }, [section]);
 
+  useEffect(() => {
+    if (activeLineRef.current && containerRef.current) {
+      activeLineRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "start",
+      });
+    }
+  }, [cursorPosition]);
+
   return (
-    <div className="relative flex flex-col md:flex-row">
-      <div className="w-full md:w-3/4 p-4">
+    <div
+      ref={containerRef}
+      className="relative flex flex-col md:flex-row h-full overflow-hidden"
+    >
+      <div
+        className="w-full md:w-3/4 p-4 overflow-y-scroll h-full hide-scrollbar"
+        style={{ scrollBehavior: "smooth" }}
+      >
         {sectionContent.map((line, index) => (
-          <div key={`${renderedKey}-${index}`} className="whitespace-pre-wrap flex items-start py-0.5">
+          <div
+            key={`${renderedKey}-${index}`}
+            className={`whitespace-pre-wrap flex items-start py-0.5 ${index === cursorPosition.line ? "bg-opacity-10 bg-highlight" : ""
+              }`}
+            ref={index === cursorPosition.line ? activeLineRef : null}
+          >
             <span
               className="text-right"
               style={{
