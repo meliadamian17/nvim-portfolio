@@ -31,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     const globalKeyDownHandler = (event: KeyboardEvent) => {
       if (commandLineOpen || showThemeModal) return;
-      //@ts-ignore
+      //@ts-expect-error annoying garbage
       handleKeyDown(event);
     };
 

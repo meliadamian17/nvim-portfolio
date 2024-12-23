@@ -3,6 +3,7 @@ import { ContentLine, Theme } from "../types";
 export interface NavbarProps {
   sections: string[];
   onNavigate: (section: string) => void;
+  onToggleNavbar: () => void;
   onToggleTheme: () => void;
   theme: Theme;
   isVisible: boolean;
