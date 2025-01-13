@@ -14,6 +14,11 @@ const Navbar: React.FC<NavbarProps> = ({
 
   if (!isVisible) return null;
 
+  const handleOnMouseDown = (section: string) => {
+    onNavigate(section);
+    setMenuOpen(false);
+  }
+
   return (
     <nav
       className={`w-full z-50 transition-all ${menuOpen ? 'pb-4 shadow-lg' : 'shadow-md'
@@ -45,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({
           {sections.map((section, index) => (
             <li
               key={index}
-              onClick={() => onNavigate(section)}
+              onMouseDown={() => handleOnMouseDown(section)}
               className="cursor-pointer hover:opacity-90 hover:underline-offset-4 hover:underline transition-all"
               style={{ color: theme.foreground }}
             >
@@ -60,10 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({
           {sections.map((section, index) => (
             <li
               key={index}
-              onClick={() => {
-                onNavigate(section);
-                setMenuOpen(false);
-              }}
+              onMouseDown={() => handleOnMouseDown(section)}
               className="py-2 px-4 cursor-pointer hover:bg-opacity-90 transition-all"
               style={{
                 backgroundColor: theme.background,
