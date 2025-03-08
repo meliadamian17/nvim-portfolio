@@ -26,6 +26,7 @@ const CommandLine: React.FC<CommandLineProps> = ({
     'theme',
     'experience',
     'navbar',
+    'q',
   ];
 
   useEffect(() => {

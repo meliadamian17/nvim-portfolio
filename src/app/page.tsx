@@ -51,12 +51,14 @@ export default function Home() {
 
   const handleCommand = (command: string) => {
     const cmd = command.replace(':', '');
-    const validSections = ['home', 'about', 'projects', 'skills', 'contact', 'experience', 'navbar'];
+    const validSections = ['home', 'about', 'projects', 'skills', 'contact', 'experience', 'navbar', 'q'];
 
     if (cmd === 'theme') {
       setShowThemeModal(true);
     } else if (cmd === 'navbar') {
       setNavbarVisible(!navbarVisible);
+    } else if (cmd === 'q') {
+      close();
     } else if (!isNaN(Number(cmd))) {
       const lineNumber = parseInt(cmd, 10) - 1;
       const sectionContent = content[currentSection as keyof typeof content];
