@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <nav
-      className={`w-full z-50 transition-all ${menuOpen ? 'pb-4 shadow-lg' : 'shadow-md'
+      className={`w-full rounded-xl z-50 transition-all ${menuOpen ? 'pb-4 shadow-lg' : 'shadow-md'
         }`}
       style={{
         backgroundColor: theme.background,
