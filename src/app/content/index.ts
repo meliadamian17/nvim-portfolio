@@ -20,7 +20,7 @@ export const content: ContentSections = {
     { text: " " },
     {
       text: "Check Out My Resume Here!",
-      link: "https://damian-melia-resume.tiiny.site/",
+      link: "/damian-melia-resume.pdf",
     },
   ],
 
@@ -217,61 +217,79 @@ export const content: ContentSections = {
     { text: " " },
     {
       text: "View My Resume",
-      link: "https://damian-melia-resume.tiiny.site/",
+      link: "/damian-melia-resume.pdf",
     },
     { text: " " },
-    { text: "Software Engineering Advisor - AVOLTA Inc (Aug 2024 - Present)" },
+    { text: "Software Engineer - JDRF Electromag Engineering (November 2025 - Present)" },
     { text: " " },
     {
-      text: "   - Designed an API testing architecture that increased test coverage by 60%.",
-    },
-    { text: " " },
-    {
-      text: "   - Improved query performance by 30% and reduced redundancy by 20% with optimized database schemas.",
+      text: "   - Built automation tools for field agents to interface with products using Python, improving customer service experience and reducing response times.",
     },
     { text: " " },
     {
-      text: "   - Mentored 3 interns, enhancing their efficiency and project contributions by 40%.",
-    },
-    { text: " " },
-    { text: "   - Refactored APIs to improve modularity and maintainability." },
-    { text: " " },
-    {
-      text: "Software Developer Intern - JDRF Electromag Engineering (Jan 2024 - Sep 2024)",
+      text: "   - Contributed to internal testing tool enabling developers to easily test product configurations using Protobuf and BLE through Nordic dev boards.",
     },
     { text: " " },
     {
-      text: "   - Implemented an automated Slack alert system, doubling team responsiveness.",
+      text: "   - Built monitoring system for CI/CD and logging infrastructure using Prometheus and Grafana, tracking internal processes with custom metrics and automating provisioning via Azure Pipelines and Ansible.",
+    },
+    { text: " " },
+    { text: "Software Developer Intern - Bank of Montreal (BMO) (January 2025 - December 2025)" },
+    { text: " " },
+    {
+      text: "   - Migrated OpenAPI Cloud API across teams, converting from JavaScript to TypeScript while implementing software engineering best practices for improved maintainability.",
     },
     { text: " " },
     {
-      text: "   - Refactored a critical software module, improving maintainability by 25%.",
-    },
-    { text: " " },
-    { text: "   - Managed CI/CD pipelines, reducing deployment time by 15%." },
-    { text: " " },
-    {
-      text: "   - Achieved 90% code coverage in unit testing and reduced runtime by 30%.",
+      text: "   - Optimized Angular/Typescript micro frontend build scripts, reducing build & deployment times by 30%.",
     },
     { text: " " },
     {
-      text: "Developer / Plugin Engineer - Treasurelands (Jul 2023 - Jan 2024)",
+      text: "   - Developed key features for commercial banking web app using Typescript and Angular, improving reporting & account management workflows.",
+    },
+    { text: " " },
+    { text: "Research Software Engineer — View - UofT, UofM, USC, Harvard University (January 2025 - August 2025)" },
+    { text: " " },
+    {
+      text: "   - Developed full-stack \"Sketch-then-Generate\" platform using Typescript, React, and Python, converting NLP to code via custom markup.",
     },
     { text: " " },
     {
-      text: "   - Developed and maintained 20+ Minecraft plugins, increasing player retention by 15%.",
+      text: "   - Engineered custom language & parser in Python for structured code generation from natural language.",
     },
     { text: " " },
     {
-      text: "   - Engineered a load-balancing proxy, improving connection speed by 30%.",
+      text: "   - Built intelligent autocomplete with AST parsing & LSP integration using Typescript for context-aware code generation.",
+    },
+    { text: " " },
+    { text: "Software Engineering Advisor - AVOLTA Inc (August 2024 - January 2025)" },
+    { text: " " },
+    {
+      text: "   - Architected API testing framework using Javascript (Jest), boosting test coverage by 60%.",
     },
     { text: " " },
     {
-      text: "   - Managed databases for 10,000+ players, optimizing performance and stability.",
+      text: "   - Engineered PostgreSQL DB schemas, improving query performance by 30% & cutting data redundancy by 20%.",
     },
     { text: " " },
     {
-      text: "   - Boosted plugin performance by 25% with new technology integrations.",
+      text: "   - Mentored 3 interns in software design, key resources, and code reviews, fostering their technical growth.",
+    },
+    { text: " " },
+    {
+      text: "Software Developer Intern - JDRF Electromag Engineering (January 2024 - September 2024)",
+    },
+    { text: " " },
+    {
+      text: "   - Implemented automated Slack alerts for CI/CD using Python with Github Actions, increasing team responsiveness by 90%.",
+    },
+    { text: " " },
+    {
+      text: "   - Led refactoring of a core Swift module, greatly enhancing code modularity.",
+    },
+    { text: " " },
+    {
+      text: "   - Managed CI/CD pipelines (Github Actions), cutting deployment time by 15% & achieving 90% test coverage.",
     },
   ],
   contact: [
